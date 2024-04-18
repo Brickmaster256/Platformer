@@ -11,11 +11,15 @@ public class GameFrame extends JFrame
 		super();
 		this.app = app;
 		
+		setupFrame();
 		
 	}
 	private void setupFrame()
 	{
-		this.setContentPane(rootPane);
+		
 		this.setSize(400, 400);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Platformer");
+		this.setVisible(true);
 	}
 }
