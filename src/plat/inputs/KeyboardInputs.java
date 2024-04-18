@@ -7,19 +7,22 @@ public class KeyboardInputs implements KeyListener
 {
 
 	@Override
-	public void keyTyped(KeyEvent typed) {
+	public void keyTyped(KeyEvent typed) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void keyPressed(KeyEvent pressed) {
-		// TODO Auto-generated method stub
+	public void keyPressed(KeyEvent pressed) 
+	{
+		System.out.println("A key is pressed");
 		
 	}
 
 	@Override
-	public void keyReleased(KeyEvent released) {
+	public void keyReleased(KeyEvent released) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
