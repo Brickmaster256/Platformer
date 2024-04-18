@@ -10,6 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import plat.inputs.KeyboardInputs;
+
 
 public class GamePanel extends JPanel
 {
@@ -38,27 +40,7 @@ public class GamePanel extends JPanel
 	}
 	private void setupListeners()
 	{
-		addKeyListener(new KeyListener()
-		{
-			@Override
-			public void keyTyped(KeyEvent typed)
-			{
-					
-			}
-			@Override
-			public void keyReleased(KeyEvent released)
-			{
-				
-			}
-			@Override
-			public void keyPressed(KeyEvent pressed)
-			{
-				
-			}
-
-			
-			
-		});
+		addKeyListener(new KeyboardInputs());
 	}
 	private void setupLayout()
 	{
