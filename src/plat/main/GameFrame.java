@@ -21,6 +21,7 @@ public class GameFrame extends JFrame
 		this.setSize(400, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Platformer");
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 }
