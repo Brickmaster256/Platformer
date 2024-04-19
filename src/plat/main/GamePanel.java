@@ -26,7 +26,7 @@ public class GamePanel extends JPanel
 	{
 		super();
 		
-		this.mouse = new MouseInputs();
+		this.mouse = new MouseInputs(this);
 		
 		setupPanel();
 		setupListeners();
@@ -50,7 +50,12 @@ public class GamePanel extends JPanel
 		this.deltaY += value;
 		repaint();
 	}
-
+	
+	public void setRectPos(int xPos, int yPos)
+	{
+		
+	}
+	
 	private void setupPanel()
 	{
 		

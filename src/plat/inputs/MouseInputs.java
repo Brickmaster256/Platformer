@@ -4,8 +4,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import plat.main.GamePanel;
+
 public class MouseInputs implements MouseListener, MouseMotionListener
 {
+	private GamePanel panel;
+	
+	public MouseInputs(GamePanel panel)
+	{
+		this.panel = panel;
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent dragged) 
