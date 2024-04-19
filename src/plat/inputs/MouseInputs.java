@@ -8,43 +8,50 @@ public class MouseInputs implements MouseListener, MouseMotionListener
 {
 
 	@Override
-	public void mouseDragged(MouseEvent dragged) {
+	public void mouseDragged(MouseEvent dragged) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent moved) {
+	public void mouseMoved(MouseEvent moved) 
+	{
+		System.out.println("mouse moved");
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent clicked) 
+	{
+		System.out.println("mouse clicked");
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent pressed) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent clicked) {
+	public void mouseReleased(MouseEvent released) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent pressed) {
+	public void mouseEntered(MouseEvent entered) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent released) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent entered) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent exited) {
+	public void mouseExited(MouseEvent exited) 
+	{
 		// TODO Auto-generated method stub
 		
 	}

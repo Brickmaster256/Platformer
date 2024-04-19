@@ -11,15 +11,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import plat.inputs.KeyboardInputs;
+import plat.inputs.MouseInputs;
 
 
 public class GamePanel extends JPanel
 {
 	private Game app;
+	private MouseInputs mouse;
 	
 	public GamePanel(Game app)
 	{
 		super();
+		
+		this.mouse = new MouseInputs();
 		
 		setupPanel();
 		setupListeners();
@@ -41,6 +45,8 @@ public class GamePanel extends JPanel
 	private void setupListeners()
 	{
 		addKeyListener(new KeyboardInputs());
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 	}
 	private void setupLayout()
 	{
