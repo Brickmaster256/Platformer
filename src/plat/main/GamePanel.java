@@ -21,7 +21,8 @@ public class GamePanel extends JPanel
 	
 	private int deltaX = 100;
 	private int deltaY = 100;
-	
+	private int frames = 0;
+	private long lastCheck = 0;
 	public GamePanel(Game app)
 	{
 		super();
@@ -38,25 +39,37 @@ public class GamePanel extends JPanel
 	{
 		super.paintComponent(graphics);
 		graphics.fillRect(deltaX, deltaY, 200, 50);
+		
+		frames++;
+		if(System.currentTimeMillis() - lastCheck >= 1000)
+		{
+			lastCheck = System.currentTimeMillis();
+			System.out.println("FPS: " + frames);
+			frames = 0;
+		}
+		
+		repaint();
 	}
 	
 	public void changeDeltaX(int value)
 	{
 		this.deltaX += value;
-		repaint();
+		
 	}
 	public void changeDeltaY(int value)
 	{
 		this.deltaY += value;
-		repaint();
+		
 	}
 	
 	public void setRectPos(int xPos, int yPos)
 	{
 		this.deltaX = xPos;
 		this.deltaY = yPos;
-		repaint();
+		
 	}
+	
+	
 	
 	private void setupPanel()
 	{
