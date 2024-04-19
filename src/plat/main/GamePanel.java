@@ -19,8 +19,8 @@ public class GamePanel extends JPanel
 	private Game app;
 	private MouseInputs mouse;
 	
-	private int deltaX = 0;
-	private int deltaY = 0;
+	private int deltaX = 100;
+	private int deltaY = 100;
 	
 	public GamePanel(Game app)
 	{
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel
 	protected void paintComponent(Graphics graphics)
 	{
 		super.paintComponent(graphics);
-		graphics.fillRect(100 + deltaX, 100 + deltaY, 200, 50);
+		graphics.fillRect(deltaX, deltaY, 200, 50);
 	}
 	
 	public void changeDeltaX(int value)
@@ -53,7 +53,9 @@ public class GamePanel extends JPanel
 	
 	public void setRectPos(int xPos, int yPos)
 	{
-		
+		this.deltaX = xPos;
+		this.deltaY = yPos;
+		repaint();
 	}
 	
 	private void setupPanel()
