@@ -19,6 +19,9 @@ public class GamePanel extends JPanel
 	private Game app;
 	private MouseInputs mouse;
 	
+	private int deltaX = 0;
+	private int deltaY = 0;
+	
 	public GamePanel(Game app)
 	{
 		super();
@@ -34,17 +37,27 @@ public class GamePanel extends JPanel
 	protected void paintComponent(Graphics graphics)
 	{
 		super.paintComponent(graphics);
-		graphics.fillRect(100, 100, 200, 50);
+		graphics.fillRect(100 + deltaX, 100 + deltaY, 200, 50);
 	}
 	
-	
+	public void changeDeltaX(int value)
+	{
+		this.deltaX += value;
+		repaint();
+	}
+	public void changeDeltaY(int value)
+	{
+		this.deltaY += value;
+		repaint();
+	}
+
 	private void setupPanel()
 	{
 		
 	}
 	private void setupListeners()
 	{
-		addKeyListener(new KeyboardInputs());
+		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
 	}
