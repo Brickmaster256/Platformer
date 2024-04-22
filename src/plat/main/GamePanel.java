@@ -19,10 +19,10 @@ public class GamePanel extends JPanel
 	private Game app;
 	private MouseInputs mouse;
 	
-	private int deltaX = 100;
-	private int deltaY = 100;
-	private int xDir = 1;
-	private int yDir = 1;
+	private float deltaX = 100;
+	private float deltaY = 100;
+	private float xDir = 0.003f;
+	private float yDir = 0.003f;
 	private int frames = 0;
 	private long lastCheck = 0;
 	public GamePanel(Game app)
@@ -42,7 +42,10 @@ public class GamePanel extends JPanel
 		super.paintComponent(graphics);
 		
 		updateRectangle();
-		graphics.fillRect(deltaX, deltaY, 200, 50);
+		graphics.setColor(Color.red);
+		graphics.fillRect((int)deltaX, (int)deltaY, 200, 50);
+		
+		
 		
 		frames++;
 		if(System.currentTimeMillis() - lastCheck >= 1000)
@@ -68,7 +71,7 @@ public class GamePanel extends JPanel
 			yDir *= -1;
 		}
 		
-		deltaY++;
+		
 	}
 	
 	public void changeDeltaX(int value)
