@@ -13,7 +13,7 @@ public class GameFrame extends JFrame
 		this.app = app;
 		this.panel = new GamePanel(this.app);
 		setupFrame();
-		panel.requestFocus();
+		
 	}
 	private void setupFrame()
 	{

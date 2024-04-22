@@ -22,8 +22,8 @@ public class GamePanel extends JPanel
 	
 	private float deltaX = 100;
 	private float deltaY = 100;
-	private float xDir = 0.005f;
-	private float yDir = 0.005f;
+	private float xDir =1f;
+	private float yDir = 1f;
 	private Color color = new Color(0,0,0);
 	private int frames = 0;
 	private long lastCheck = 0;
@@ -51,14 +51,8 @@ public class GamePanel extends JPanel
 		
 		
 		
-		frames++;
-		if(System.currentTimeMillis() - lastCheck >= 1000)
-		{
-			lastCheck = System.currentTimeMillis();
-			System.out.println("FPS: " + frames);
-			frames = 0;
-		}
 		
+		repaint();
 		
 	}
 	private void updateRectangle()
