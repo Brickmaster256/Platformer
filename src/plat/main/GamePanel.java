@@ -59,7 +59,7 @@ public class GamePanel extends JPanel
 			frames = 0;
 		}
 		
-		repaint();
+		
 	}
 	private void updateRectangle()
 	{
@@ -86,7 +86,7 @@ public class GamePanel extends JPanel
 		int blue = random.nextInt(255);
 		int green = random.nextInt(255);
 		
-		return new Color(red, blue, green);
+		return new Color(red, green, blue);
 				
 				
 	}
@@ -101,16 +101,12 @@ public class GamePanel extends JPanel
 		this.deltaY += value;
 		
 	}
-	
 	public void setRectPos(int xPos, int yPos)
 	{
 		this.deltaX = xPos;
 		this.deltaY = yPos;
 		
 	}
-	
-	
-	
 	private void setupPanel()
 	{
 		
