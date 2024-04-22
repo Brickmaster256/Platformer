@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import plat.inputs.KeyboardInputs;
 import plat.inputs.MouseInputs;
@@ -21,16 +22,19 @@ public class GamePanel extends JPanel
 	
 	private float deltaX = 100;
 	private float deltaY = 100;
-	private float xDir = 0.003f;
-	private float yDir = 0.003f;
+	private float xDir = 0.005f;
+	private float yDir = 0.005f;
+	private Color color = new Color(0,0,0);
 	private int frames = 0;
 	private long lastCheck = 0;
+	private Random random;
+	
 	public GamePanel(Game app)
 	{
 		super();
 		
 		this.mouse = new MouseInputs(this);
-		
+		this.random = new Random();
 		setupPanel();
 		setupListeners();
 		setupLayout();
@@ -42,7 +46,7 @@ public class GamePanel extends JPanel
 		super.paintComponent(graphics);
 		
 		updateRectangle();
-		graphics.setColor(Color.red);
+		graphics.setColor(color);
 		graphics.fillRect((int)deltaX, (int)deltaY, 200, 50);
 		
 		
@@ -62,16 +66,29 @@ public class GamePanel extends JPanel
 		deltaX += xDir;
 		if (deltaX > 400 || deltaX < 0)
 		{
-			deltaX *= -1;
+			xDir*= -1;
+			color = getRandomColor();
+			
 		}
 		
 		deltaY += yDir;
 		if(deltaY > 400 || deltaY < 0)
 		{
 			yDir *= -1;
+			color = getRandomColor();
 		}
 		
 		
+	}
+	private Color getRandomColor()
+	{
+		int red = random.nextInt(255);
+		int blue = random.nextInt(255);
+		int green = random.nextInt(255);
+		
+		return new Color(red, blue, green);
+				
+				
 	}
 	
 	public void changeDeltaX(int value)
