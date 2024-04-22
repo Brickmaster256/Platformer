@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>140</y>
+      <w>300</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Game(controller)
+--
++window: JFrame
+
+--
++Game(): constructor
++ start(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>140</y>
+      <w>280</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>GameFrame
+--
+-app : Game(controller)
+-panel : GamePanel
+--
++GameFrame(Game) : constructor
+-setupFrame() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>140</y>
+      <w>320</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>GamePanel
+--
+-app: Game(controller)
+-mouse: MouseInput
+-deltaX: int
+- deltaY: int
+-frames: int
+-lastCheck : long
+--
++set()/get()
++GamePanel(Game) : constructor
+#paintComponent(Graphics) : void
+-setupPanel() : void
+-setupListeners() : void
+-setupLayout() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>210</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>SimpleClass</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>510</y>
+      <w>300</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>KeyboardInputs
+--
+- panel : GamePanel
+--
++KeyboardInputs(GamePanel) : constructor
++keyTyped(KeyEvent) : public
++keyPressed(KeyEvent) : public
++KeyReleased(KeyEvent) : public</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>510</y>
+      <w>310</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>MouseInputs
+--
+- panel : GamePanel
+--
++MouseInputs(GamePanel) : constructor
++mouseDragged(MouseEvent) : public
++mousePressed(MouseEvent) : public
++mouseReleased(mouseEvent) : public
++mouseMoved(mouseEvent) : public
++mouseClicked(mouseEvent) : public
++mouseEntered(mouseEvent) : public
++mouseExited(mouseEvent) : public</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
