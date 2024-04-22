@@ -21,6 +21,8 @@ public class GamePanel extends JPanel
 	
 	private int deltaX = 100;
 	private int deltaY = 100;
+	private int xDir = 1;
+	private int yDir = 1;
 	private int frames = 0;
 	private long lastCheck = 0;
 	public GamePanel(Game app)
@@ -38,6 +40,8 @@ public class GamePanel extends JPanel
 	protected void paintComponent(Graphics graphics)
 	{
 		super.paintComponent(graphics);
+		
+		updateRectangle();
 		graphics.fillRect(deltaX, deltaY, 200, 50);
 		
 		frames++;
@@ -49,6 +53,22 @@ public class GamePanel extends JPanel
 		}
 		
 		repaint();
+	}
+	private void updateRectangle()
+	{
+		deltaX += xDir;
+		if (deltaX > 400 || deltaX < 0)
+		{
+			deltaX *= -1;
+		}
+		
+		deltaY += yDir;
+		if(deltaY > 400 || deltaY < 0)
+		{
+			yDir *= -1;
+		}
+		
+		deltaY++;
 	}
 	
 	public void changeDeltaX(int value)
