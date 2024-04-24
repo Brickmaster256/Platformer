@@ -52,7 +52,7 @@ public class GamePanel extends JPanel
 		
 		
 		
-		repaint();
+		
 		
 	}
 	private void updateRectangle()

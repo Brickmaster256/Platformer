@@ -47,14 +47,17 @@
 --
 -app: Game(controller)
 -mouse: MouseInput
--deltaX: int
-- deltaY: int
+-deltaX: float
+- deltaY: float
+-xDir: float
+-yDir: float
 -frames: int
 -lastCheck : long
 --
 +set()/get()
 +GamePanel(Game) : constructor
 #paintComponent(Graphics) : void
+-updateRectangle() : void
 -setupPanel() : void
 -setupListeners() : void
 -setupLayout() : void
