@@ -22,6 +22,9 @@ public class GamePanel extends JPanel
 	private double xDelta = 100, yDelta = 100;
 	private BufferedImage image, subImage;
 	private BufferedImage[] idleAnimation;
+	private int animationTick, animationIndex, animationSpeed = 30;
+	
+	
 	public GamePanel() 
 	{
 		
@@ -90,13 +93,30 @@ public class GamePanel extends JPanel
 		
 	}
 	
+	
+	public void updateAnimationTick()
+	{
+		animationTick++;
+		if (animationTick >= animationSpeed)
+		{
+			animationTick = 0;
+			animationIndex++;
+			if(animationIndex >= idleAnimation.length)
+				{
+					animationIndex = 0;
+				}
+		}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics graphics) 
 	{
 		super.paintComponent(graphics);
 		
+		updateAnimationTick();
+		
 //		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
-		graphics.drawImage(idleAnimation[2], (int)xDelta, (int)yDelta, 128, 80, null);
+		graphics.drawImage(idleAnimation[animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
 		
