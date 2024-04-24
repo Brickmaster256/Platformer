@@ -3,14 +3,14 @@ package plat.main;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+
+
 
 import plat.inputs.KeyboardInputs;
 import plat.inputs.MouseInputs;
@@ -20,7 +20,7 @@ public class GamePanel extends JPanel
 {
 	private MouseInputs mouseInputs;
 	private double xDelta = 100, yDelta = 100;
-	private BufferedImage img;
+	private BufferedImage image, subImage;
 	
 	public GamePanel() 
 	{
@@ -38,11 +38,11 @@ public class GamePanel extends JPanel
 	}
 	
 	private void importImg() {
-		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
+		InputStream inputStream = getClass().getResourceAsStream("/res/player_sprites.png");
 
 		try 
 		{
-			img = ImageIO.read(is);
+			image = ImageIO.read(inputStream);
 		} 
 		catch (IOException error) 
 		{
@@ -83,7 +83,8 @@ public class GamePanel extends JPanel
 	{
 		super.paintComponent(graphics);
 		
-		graphics.drawImage(img, 0, 0, null);
+		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
+		graphics.drawImage(image, 0, 0, null);
 		
 		
 		
