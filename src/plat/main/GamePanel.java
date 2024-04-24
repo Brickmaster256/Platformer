@@ -17,102 +17,45 @@ import plat.inputs.MouseInputs;
 
 public class GamePanel extends JPanel
 {
-	private Game app;
-	private MouseInputs mouse;
-	
-	private float deltaX = 100;
-	private float deltaY = 100;
-	private float xDir =1f;
-	private float yDir = 1f;
-	private Color color = new Color(0,0,0);
-	private int frames = 0;
-	private long lastCheck = 0;
-	private Random random;
-	
-	public GamePanel(Game app)
+	private MouseInputs mouseInputs;
+	private int xDelta = 100, yDelta = 100;
+
+	public GamePanel() 
 	{
-		super();
-		
-		this.mouse = new MouseInputs(this);
-		this.random = new Random();
-		setupPanel();
-		setupListeners();
-		setupLayout();
+
+		mouseInputs = new MouseInputs(this);
+		addKeyListener(new KeyboardInputs(this));
+		addMouseListener(mouseInputs);
+		addMouseMotionListener(mouseInputs);
+
 	}
-	
-	@Override
-	protected void paintComponent(Graphics graphics)
+
+	public void changeXDelta(int value) 
+	{
+		this.xDelta += value;
+		
+	}
+
+	public void changeYDelta(int value) 
+	{
+		this.yDelta += value;
+		
+	}
+
+	public void setRectPos(int xValue, int yValue) 
+	{
+		this.xDelta = xValue;
+		this.yDelta = yValue;
+		
+	}
+
+	public void paintComponent(Graphics graphics) 
 	{
 		super.paintComponent(graphics);
-		
-		updateRectangle();
-		graphics.setColor(color);
-		graphics.fillRect((int)deltaX, (int)deltaY, 200, 50);
-		
-		
-		
-		
-		
-		
-	}
-	private void updateRectangle()
-	{
-		deltaX += xDir;
-		if (deltaX > 400 || deltaX < 0)
-		{
-			xDir*= -1;
-			color = getRandomColor();
-			
-		}
-		
-		deltaY += yDir;
-		if(deltaY > 400 || deltaY < 0)
-		{
-			yDir *= -1;
-			color = getRandomColor();
-		}
-		
-		
-	}
-	private Color getRandomColor()
-	{
-		int red = random.nextInt(255);
-		int blue = random.nextInt(255);
-		int green = random.nextInt(255);
-		
-		return new Color(red, green, blue);
-				
-				
+		graphics.fillRect(xDelta, yDelta, 200, 50);
+
+		repaint();
 	}
 	
-	public void changeDeltaX(int value)
-	{
-		this.deltaX += value;
-		
-	}
-	public void changeDeltaY(int value)
-	{
-		this.deltaY += value;
-		
-	}
-	public void setRectPos(int xPos, int yPos)
-	{
-		this.deltaX = xPos;
-		this.deltaY = yPos;
-		
-	}
-	private void setupPanel()
-	{
-		
-	}
-	private void setupListeners()
-	{
-		addKeyListener(new KeyboardInputs(this));
-		addMouseListener(mouse);
-		addMouseMotionListener(mouse);
-	}
-	private void setupLayout()
-	{
-		
-	}
+	
 }

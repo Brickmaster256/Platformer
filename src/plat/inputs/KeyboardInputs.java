@@ -29,22 +29,22 @@ public class KeyboardInputs implements KeyListener
 		
 			case KeyEvent.VK_W:
 			{
-				panel.changeDeltaY(-5);
+				panel.changeYDelta(-5);
 				break;
 			}	
 			case KeyEvent.VK_A:
 			{
-				panel.changeDeltaX(-5);
+				panel.changeXDelta(-5);
 				break;
 			}
 			case KeyEvent.VK_S:
 			{
-				panel.changeDeltaY(5);
+				panel.changeYDelta(5);
 				break;
 			}
 			case KeyEvent.VK_D:
 			{	
-				panel.changeDeltaX(5);
+				panel.changeYDelta(5);
 				break;
 			}
 		}
