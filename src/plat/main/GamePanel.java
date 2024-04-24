@@ -1,5 +1,6 @@
 package plat.main;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.BasicStroke;
@@ -7,9 +8,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Random;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 import plat.inputs.KeyboardInputs;
 import plat.inputs.MouseInputs;
@@ -19,16 +20,16 @@ public class GamePanel extends JPanel
 {
 	private MouseInputs mouseInputs;
 	private double xDelta = 100, yDelta = 100;
-	private double xDir = 1, yDir = 1;
-	private int frames = 0;
-	private long lastCheck = System.currentTimeMillis();
-	private Random random;
-	private Color color = new Color(0,0,0);
-
+	private BufferedImage img;
+	
 	public GamePanel() 
 	{
-		random = new Random();
+		
 		mouseInputs = new MouseInputs(this);
+		
+		
+		importImg();
+		
 		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs);
@@ -36,6 +37,20 @@ public class GamePanel extends JPanel
 
 	}
 	
+	private void importImg() {
+		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
+
+		try 
+		{
+			img = ImageIO.read(is);
+		} 
+		catch (IOException error) 
+		{
+			error.printStackTrace();
+		}
+
+	}
+
 	private void setPanelSize()
 	{
 		Dimension size = new Dimension(1280, 800);
@@ -68,37 +83,11 @@ public class GamePanel extends JPanel
 	{
 		super.paintComponent(graphics);
 		
-		updateRectangle();
-		graphics.setColor(color);
-		graphics.fillRect((int)xDelta, (int)yDelta, 200, 50);
-
+		graphics.drawImage(img, 0, 0, null);
+		
 		
 		
 	}
 	
-	private void updateRectangle()
-	{
-		xDelta += xDir;
-		if(xDelta > 400 || xDelta < 0)
-		{
-			xDir *= -1;
-			color = getRandomColor();
-		}
-		
-		yDelta += yDir;
-		if(yDelta > 400 || yDelta < 0)
-		{
-			yDir *= -1;
-		}
-	}
 	
-	private Color getRandomColor()
-	{
-		int red = random.nextInt(255);
-		int green = random.nextInt(255);
-		int blue = random.nextInt(255);
-		
-		
-		return new Color(red, green, blue);
-	}
 }
