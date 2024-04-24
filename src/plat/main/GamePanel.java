@@ -84,7 +84,7 @@ public class GamePanel extends JPanel
 		super.paintComponent(graphics);
 		
 		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
-		graphics.drawImage(image, 0, 0, null);
+		graphics.drawImage(subImage, (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
 		

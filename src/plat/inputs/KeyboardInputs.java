@@ -44,7 +44,7 @@ public class KeyboardInputs implements KeyListener
 			}
 			case KeyEvent.VK_D:
 			{	
-				panel.changeYDelta(5);
+				panel.changeXDelta(5);
 				break;
 			}
 		}
