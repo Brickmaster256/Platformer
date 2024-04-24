@@ -21,7 +21,7 @@ public class GamePanel extends JPanel
 	private MouseInputs mouseInputs;
 	private double xDelta = 100, yDelta = 100;
 	private BufferedImage image, subImage;
-	
+	private BufferedImage[] idleAnimation;
 	public GamePanel() 
 	{
 		
@@ -29,12 +29,24 @@ public class GamePanel extends JPanel
 		
 		
 		importImg();
+		loadAnimations();
 		
 		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs);
 		addMouseMotionListener(mouseInputs);
 
+	}
+	
+	private void loadAnimations()
+	{
+		idleAnimation = new BufferedImage[5];
+		
+		for(int index = 0; index < idleAnimation.length; index++)
+		{
+			idleAnimation[index] = image.getSubimage( index *64, 0, 64, 40);
+		}
+		
 	}
 	
 	private void importImg() {
@@ -83,8 +95,8 @@ public class GamePanel extends JPanel
 	{
 		super.paintComponent(graphics);
 		
-		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
-		graphics.drawImage(subImage, (int)xDelta, (int)yDelta, 128, 80, null);
+//		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
+		graphics.drawImage(idleAnimation[2], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
 		
