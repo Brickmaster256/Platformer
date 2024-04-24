@@ -71,7 +71,7 @@ public class GamePanel extends JPanel
 			frames = 0;
 		}
 		
-		repaint();
+		
 	}
 	
 	private void updateRectangle()
