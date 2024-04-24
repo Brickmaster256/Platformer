@@ -19,7 +19,7 @@ public class GamePanel extends JPanel
 {
 	private MouseInputs mouseInputs;
 	private double xDelta = 100, yDelta = 100;
-	private double xDir = 0.003f, yDir = 0.003f;
+	private double xDir = 1, yDir = 1;
 	private int frames = 0;
 	private long lastCheck = System.currentTimeMillis();
 	private Random random;
@@ -29,10 +29,19 @@ public class GamePanel extends JPanel
 	{
 		random = new Random();
 		mouseInputs = new MouseInputs(this);
+		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs);
 		addMouseMotionListener(mouseInputs);
 
+	}
+	
+	private void setPanelSize()
+	{
+		Dimension size = new Dimension(1280, 800);
+		setMinimumSize(size);
+		setPreferredSize(size);
+		setMaximumSize(size);
 	}
 
 	public void changeXDelta(int value) 
@@ -63,13 +72,6 @@ public class GamePanel extends JPanel
 		graphics.setColor(color);
 		graphics.fillRect((int)xDelta, (int)yDelta, 200, 50);
 
-		frames++;
-		if(System.currentTimeMillis() - lastCheck >= 1000)
-		{
-			lastCheck = System.currentTimeMillis();
-			System.out.println("FPS: " + frames);
-			frames = 0;
-		}
 		
 		
 	}

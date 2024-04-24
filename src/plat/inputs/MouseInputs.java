@@ -25,7 +25,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseMoved(MouseEvent moved) 
 	{
-		panel.setRectPos(moved.getX(), moved.getY());
 		
 	}
 
@@ -39,28 +38,28 @@ public class MouseInputs implements MouseListener, MouseMotionListener
 	@Override
 	public void mousePressed(MouseEvent pressed) 
 	{
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent released) 
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent entered) 
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent exited) 
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
