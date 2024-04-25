@@ -1,0 +1,51 @@
+package plat.utilz;
+
+public class Constants
+{
+	public static class PlayerConstants
+	{
+		public static final int RUNNING = 0;
+		public static final int IDLE = 1;
+		public static final int JUMP = 2;
+		public static final int FALLING = 3;
+		public static final int GROUND = 4;
+		public static final int HIT = 5;
+		public static final int ATTACK_ONE = 6;
+		public static final int ATTACK_JUMP_ONE = 7;
+		public static final int ATTACK_JUMP_TWO = 8;
+		
+		public static int getSpriteAmount(int playerAction)
+		{
+			switch(playerAction)
+			{
+				case RUNNING:
+				{
+					return 6;
+				}
+				case IDLE:
+				{
+					return 5;
+				}
+				case HIT:
+				{
+					return 4;
+				}
+				case JUMP:
+				case ATTACK_JUMP_ONE:
+				case ATTACK_JUMP_TWO:
+				{
+					return 3;
+				}
+				case GROUND:
+				{
+					return 2;
+				}
+				case FALLING:
+				default:
+				{
+					return 1;
+				}
+			}
+		}
+	}
+}

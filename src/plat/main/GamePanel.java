@@ -99,16 +99,16 @@ public class GamePanel extends JPanel
 	
 	public void updateAnimationTick()
 	{
-//		animationTick++;
-//		if (animationTick >= animationSpeed)
-//		{
-//			animationTick = 0;
-//			animationIndex++;
-//			if(animationIndex >= animations.length)
-//				{
-//					animationIndex = 0;
-//				}
-//		}
+		animationTick++;
+		if (animationTick >= animationSpeed)
+		{
+			animationTick = 0;
+			animationIndex++;
+			if(animationIndex >= 6)
+				{
+					animationIndex = 0;
+				}
+		}
 	}
 	
 	@Override
@@ -119,7 +119,7 @@ public class GamePanel extends JPanel
 		updateAnimationTick();
 		
 //		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
-		graphics.drawImage(animations[7][1], (int)xDelta, (int)yDelta, 128, 80, null);
+		graphics.drawImage(animations[1][animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
 		
