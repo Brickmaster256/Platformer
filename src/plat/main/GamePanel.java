@@ -21,8 +21,8 @@ public class GamePanel extends JPanel
 	private MouseInputs mouseInputs;
 	private double xDelta = 100, yDelta = 100;
 	private BufferedImage image, subImage;
-	private BufferedImage[] idleAnimation;
-	private int animationTick, animationIndex, animationSpeed = 30;
+	private BufferedImage[][] animations;
+	private int animationTick, animationIndex, animationSpeed = 15;
 	
 	
 	public GamePanel() 
@@ -43,12 +43,15 @@ public class GamePanel extends JPanel
 	
 	private void loadAnimations()
 	{
-		idleAnimation = new BufferedImage[5];
-		
-		for(int index = 0; index < idleAnimation.length; index++)
+		animations = new BufferedImage[9][6];
+		for(int outerIndex = 0; outerIndex < animations.length; outerIndex++)
 		{
-			idleAnimation[index] = image.getSubimage( index *64, 0, 64, 40);
+			for(int index = 0; index < animations[outerIndex].length; index++)
+			{
+				animations[outerIndex][index] = image.getSubimage( index * 64, outerIndex * 40, 64, 40);
+			}
 		}
+		
 		
 	}
 	
@@ -96,16 +99,16 @@ public class GamePanel extends JPanel
 	
 	public void updateAnimationTick()
 	{
-		animationTick++;
-		if (animationTick >= animationSpeed)
-		{
-			animationTick = 0;
-			animationIndex++;
-			if(animationIndex >= idleAnimation.length)
-				{
-					animationIndex = 0;
-				}
-		}
+//		animationTick++;
+//		if (animationTick >= animationSpeed)
+//		{
+//			animationTick = 0;
+//			animationIndex++;
+//			if(animationIndex >= animations.length)
+//				{
+//					animationIndex = 0;
+//				}
+//		}
 	}
 	
 	@Override
@@ -116,7 +119,7 @@ public class GamePanel extends JPanel
 		updateAnimationTick();
 		
 //		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
-		graphics.drawImage(idleAnimation[animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
+		graphics.drawImage(animations[7][1], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
 		
