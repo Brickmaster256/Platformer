@@ -15,6 +15,8 @@ import java.io.InputStream;
 import plat.inputs.KeyboardInputs;
 import plat.inputs.MouseInputs;
 
+import static plat.utilz.Constants.PlayerConstants.*;
+import static plat.utilz.Constants.Directions.*;
 
 public class GamePanel extends JPanel
 {
@@ -23,7 +25,8 @@ public class GamePanel extends JPanel
 	private BufferedImage image, subImage;
 	private BufferedImage[][] animations;
 	private int animationTick, animationIndex, animationSpeed = 15;
-	
+	private int playerAction = IDLE;
+	private int playerDir = -1;
 	
 	public GamePanel() 
 	{
@@ -77,23 +80,10 @@ public class GamePanel extends JPanel
 		setMaximumSize(size);
 	}
 
-	public void changeXDelta(int value) 
+	
+	public void setDirection(int direction)
 	{
-		this.xDelta += value;
-		
-	}
-
-	public void changeYDelta(int value) 
-	{
-		this.yDelta += value;
-		
-	}
-
-	public void setRectPos(int xValue, int yValue) 
-	{
-		this.xDelta = xValue;
-		this.yDelta = yValue;
-		
+		this.playerDir = direction;
 	}
 	
 	
@@ -104,7 +94,7 @@ public class GamePanel extends JPanel
 		{
 			animationTick = 0;
 			animationIndex++;
-			if(animationIndex >= 6)
+			if(animationIndex >= getSpriteAmount(playerAction))
 				{
 					animationIndex = 0;
 				}
@@ -118,8 +108,8 @@ public class GamePanel extends JPanel
 		
 		updateAnimationTick();
 		
-//		subImage = image.getSubimage(1 * 64, 8 * 40, 64, 40);
-		graphics.drawImage(animations[1][animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
+
+		graphics.drawImage(animations[playerAction][animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
 		

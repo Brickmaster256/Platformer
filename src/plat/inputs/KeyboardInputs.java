@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import plat.main.GamePanel;
+import static plat.utilz.Constants.Directions.*;
 
 public class KeyboardInputs implements KeyListener 
 {
@@ -29,22 +30,22 @@ public class KeyboardInputs implements KeyListener
 		
 			case KeyEvent.VK_W:
 			{
-				panel.changeYDelta(-5);
+				panel.setDirection(UP);
 				break;
 			}	
 			case KeyEvent.VK_A:
 			{
-				panel.changeXDelta(-5);
+				panel.setDirection(LEFT);
 				break;
 			}
 			case KeyEvent.VK_S:
 			{
-				panel.changeYDelta(5);
+				panel.setDirection(DOWN);
 				break;
 			}
 			case KeyEvent.VK_D:
 			{	
-				panel.changeXDelta(5);
+				panel.setDirection(RIGHT);
 				break;
 			}
 		}
@@ -54,8 +55,26 @@ public class KeyboardInputs implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent released) 
 	{
-		// TODO Auto-generated method stub
+		switch(released.getKeyCode())
+		{
 		
+			case KeyEvent.VK_W:
+			{
+				
+			}	
+			case KeyEvent.VK_A:
+			{
+				
+			}
+			case KeyEvent.VK_S:
+			{
+				
+			}
+			case KeyEvent.VK_D:
+			{	
+				
+			}
+		}
 	}
 	
 }
