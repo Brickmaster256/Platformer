@@ -27,6 +27,7 @@ public class GamePanel extends JPanel
 	private int animationTick, animationIndex, animationSpeed = 15;
 	private int playerAction = IDLE;
 	private int playerDir = -1;
+	private boolean moving = false;
 	
 	public GamePanel() 
 	{
@@ -84,6 +85,12 @@ public class GamePanel extends JPanel
 	public void setDirection(int direction)
 	{
 		this.playerDir = direction;
+		moving = true;
+	}
+	
+	public void setMoving(boolean moving)
+	{
+		this.moving = moving;
 	}
 	
 	
@@ -107,11 +114,24 @@ public class GamePanel extends JPanel
 		super.paintComponent(graphics);
 		
 		updateAnimationTick();
+		setAnimation();
 		
-
 		graphics.drawImage(animations[playerAction][animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
+		
+	}
+
+	private void setAnimation()
+	{
+		if(moving)
+		{
+			playerAction = RUNNING;
+		}
+		else
+		{
+			playerAction = IDLE;
+		}
 		
 	}
 	

@@ -59,20 +59,11 @@ public class KeyboardInputs implements KeyListener
 		{
 		
 			case KeyEvent.VK_W:
-			{
-				
-			}	
 			case KeyEvent.VK_A:
-			{
-				
-			}
 			case KeyEvent.VK_S:
-			{
-				
-			}
 			case KeyEvent.VK_D:
 			{	
-				
+				panel.setMoving(false);
 			}
 		}
 	}
