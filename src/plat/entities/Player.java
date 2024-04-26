@@ -20,8 +20,10 @@ public class Player extends Entity
 	private BufferedImage[][] animations;
 	private int animationTick, animationIndex, animationSpeed = 15;
 	private int playerAction = IDLE;
-	private int playerDir = -1;
 	private boolean moving = false;
+	private boolean left, right, up, down;
+	
+	
 	public Player(float xDelta, float yDelta)
 	{
 		super(xDelta, yDelta);
@@ -67,16 +69,7 @@ public class Player extends Entity
 		
 	}
 	
-	public void setDirection(int direction)
-	{
-		this.playerDir = direction;
-		moving = true;
-	}
 	
-	public void setMoving(boolean moving)
-	{
-		this.moving = moving;
-	}
 	
 	
 	public void updateAnimationTick()
@@ -95,34 +88,50 @@ public class Player extends Entity
 	
 	private void updatePosition()
 	{
-		if(moving)
-		{
-			switch(playerDir)
-			{
-				case LEFT:
-				{
-					xDelta -= 3;
-					break;
-				}	
-				case UP:
-				{
-					yDelta -= 3;
-					break;
-				}
-				case RIGHT:
-				{
-					xDelta += 3;
-					break;
-				}
-				case DOWN:
-				{
-					yDelta += 3;
-					break;
-				}
-					
-			}
-		}
 		
+		
+	}
+	
+	
+
+	public boolean isLeft()
+	{
+		return left;
+	}
+
+	public void setLeft(boolean left)
+	{
+		this.left = left;
+	}
+
+	public boolean isRight()
+	{
+		return right;
+	}
+
+	public void setRight(boolean right)
+	{
+		this.right = right;
+	}
+
+	public boolean isUp()
+	{
+		return up;
+	}
+
+	public void setUp(boolean up)
+	{
+		this.up = up;
+	}
+
+	public boolean isDown()
+	{
+		return down;
+	}
+
+	public void setDown(boolean down)
+	{
+		this.down = down;
 	}
 
 	private void setAnimation()

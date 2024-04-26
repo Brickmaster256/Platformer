@@ -30,22 +30,22 @@ public class KeyboardInputs implements KeyListener
 		
 			case KeyEvent.VK_W:
 			{
-				panel.getGame().getPlayer().setDirection(UP);
+				panel.getGame().getPlayer().setUp(true);
 				break;
 			}	
 			case KeyEvent.VK_A:
 			{
-				panel.getGame().getPlayer().setDirection(LEFT);
+				panel.getGame().getPlayer().setLeft(true);
 				break;
 			}
 			case KeyEvent.VK_S:
 			{
-				panel.getGame().getPlayer().setDirection(DOWN);
+				panel.getGame().getPlayer().setDown(true);
 				break;
 			}
 			case KeyEvent.VK_D:
 			{	
-				panel.getGame().getPlayer().setDirection(RIGHT);
+				panel.getGame().getPlayer().setRight(true);
 				break;
 			}
 		}
@@ -59,11 +59,20 @@ public class KeyboardInputs implements KeyListener
 		{
 		
 			case KeyEvent.VK_W:
+			{	
+				panel.getGame().getPlayer().setUp(false);
+			}
 			case KeyEvent.VK_A:
+			{	
+				panel.getGame().getPlayer().setLeft(false);
+			}
 			case KeyEvent.VK_S:
+			{	
+				panel.getGame().getPlayer().setDown(false);
+			}
 			case KeyEvent.VK_D:
 			{	
-				panel.getGame().getPlayer().setMoving(false);
+				panel.getGame().getPlayer().setRight(false);
 			}
 		}
 	}
