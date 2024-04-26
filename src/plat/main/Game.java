@@ -1,6 +1,8 @@
 package plat.main;
 
+import java.awt.Graphics;
 
+import plat.entities.Player;
 
 public class Game implements Runnable
 {
@@ -10,23 +12,38 @@ public class Game implements Runnable
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
 	
+	private Player player;
+	
 	public Game() 
 	{
-		panel = new GamePanel();
+		panel = new GamePanel(this);
 		frame = new GameFrame(panel);
 		panel.requestFocus();
+		
+		initClasses();
 		startGameLoop();
-
+		
 	}
 	
+	private void initClasses()
+	{
+		player = new Player(200, 200);
+		
+	}
+
 	private void startGameLoop()
 	{
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-	private void update()
+	public void update()
 	{
-		panel.updateGame();
+		player.update();
+	}
+	
+	public void render(Graphics graphics)
+	{
+		player.render(graphics);
 	}
 
 	@Override
