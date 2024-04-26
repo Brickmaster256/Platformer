@@ -53,7 +53,6 @@ public class Game implements Runnable
 		double timePerFrame = 1000000000.0 / FPS_SET;
 		double timePerUpdate = 1000000000.0 / UPS_SET;
 		
-		
 		long previousTime = System.nanoTime();
 		
 		int frames = 0;
@@ -68,8 +67,6 @@ public class Game implements Runnable
 			
 			
 			long currentTime = System.nanoTime();
-			
-			
 			
 			deltaU += (currentTime - previousTime) / timePerUpdate;
 			deltaF += (currentTime - previousTime) / timePerFrame;
@@ -89,8 +86,6 @@ public class Game implements Runnable
 				deltaF--;
 			}
 		
-			
-			
 			if(System.currentTimeMillis() - lastCheck >= 1000)
 			{
 				lastCheck = System.currentTimeMillis();
@@ -99,15 +94,15 @@ public class Game implements Runnable
 				updates = 0;
 			}
 			
-			
-			
-			
 		}
 		
-		
-		
-		
 	}
+	
+	public void windowLostFocus()
+	{
+		player.resetDirBooleans();
+	}
+	
 	public Player getPlayer()
 	{
 		return player;
