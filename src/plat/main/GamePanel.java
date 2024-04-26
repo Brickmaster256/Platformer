@@ -115,10 +115,43 @@ public class GamePanel extends JPanel
 		
 		updateAnimationTick();
 		setAnimation();
+		updatePosition();
 		
 		graphics.drawImage(animations[playerAction][animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
 		
 		
+		
+	}
+
+	private void updatePosition()
+	{
+		if(moving)
+		{
+			switch(playerDir)
+			{
+				case LEFT:
+				{
+					xDelta -= 5;
+					break;
+				}	
+				case UP:
+				{
+					yDelta -= 5;
+					break;
+				}
+				case RIGHT:
+				{
+					xDelta += 5;
+					break;
+				}
+				case DOWN:
+				{
+					yDelta += 5;
+					break;
+				}
+					
+			}
+		}
 		
 	}
 
