@@ -136,22 +136,22 @@ public class GamePanel extends JPanel
 			{
 				case LEFT:
 				{
-					xDelta -= 5;
+					xDelta -= 3;
 					break;
 				}	
 				case UP:
 				{
-					yDelta -= 5;
+					yDelta -= 3;
 					break;
 				}
 				case RIGHT:
 				{
-					xDelta += 5;
+					xDelta += 3;
 					break;
 				}
 				case DOWN:
 				{
-					yDelta += 5;
+					yDelta += 3;
 					break;
 				}
 					
