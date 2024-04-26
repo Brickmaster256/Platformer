@@ -16,11 +16,12 @@ public class Game implements Runnable
 	
 	public Game() 
 	{
+		initClasses();
 		panel = new GamePanel(this);
 		frame = new GameFrame(panel);
 		panel.requestFocus();
 		
-		initClasses();
+		
 		startGameLoop();
 		
 	}
@@ -103,5 +104,12 @@ public class Game implements Runnable
 			
 		}
 		
+		
+		
+		
+	}
+	public Player getPlayer()
+	{
+		return player;
 	}
 }
