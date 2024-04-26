@@ -26,7 +26,7 @@ public class Game implements Runnable
 	}
 	private void update()
 	{
-		
+		panel.updateGame();
 	}
 
 	@Override
@@ -59,6 +59,7 @@ public class Game implements Runnable
 			
 			if(deltaU >= 1)
 			{
+				update();
 				updates++;
 				deltaU--;
 			}

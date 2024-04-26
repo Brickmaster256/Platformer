@@ -108,14 +108,19 @@ public class GamePanel extends JPanel
 		}
 	}
 	
+	public void updateGame()
+	{
+		updateAnimationTick();
+		setAnimation();
+		updatePosition();
+	}
+
 	@Override
 	protected void paintComponent(Graphics graphics) 
 	{
 		super.paintComponent(graphics);
 		
-		updateAnimationTick();
-		setAnimation();
-		updatePosition();
+		
 		
 		graphics.drawImage(animations[playerAction][animationIndex], (int)xDelta, (int)yDelta, 128, 80, null);
 		
