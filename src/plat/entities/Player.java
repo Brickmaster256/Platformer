@@ -22,6 +22,7 @@ public class Player extends Entity
 	private int playerAction = IDLE;
 	private boolean moving = false;
 	private boolean left, right, up, down;
+	private float playerSpeed = 2.0f;
 	
 	
 	public Player(float xDelta, float yDelta)
@@ -32,9 +33,10 @@ public class Player extends Entity
 	
 	public void update()
 	{
+		updatePosition();
 		updateAnimationTick();
 		setAnimation();
-		updatePosition();
+		
 	}
 	
 	public void render(Graphics graphics)
@@ -69,8 +71,18 @@ public class Player extends Entity
 		
 	}
 	
-	
-	
+	private void setAnimation()
+	{
+		if(moving)
+		{
+			playerAction = RUNNING;
+		}
+		else
+		{
+			playerAction = IDLE;
+		}
+		
+	}
 	
 	public void updateAnimationTick()
 	{
@@ -88,7 +100,29 @@ public class Player extends Entity
 	
 	private void updatePosition()
 	{
+		moving = false;
 		
+		if(left && !right)
+		{
+			xDelta -= playerSpeed;
+			moving = true;
+		}
+		else if (right && !left)
+		{
+			xDelta += playerSpeed;
+			moving = true;
+		}
+		
+		if (up && !down)
+		{
+			yDelta -= playerSpeed;
+			moving = true;
+		}
+		else if (down && !up)
+		{
+			yDelta += playerSpeed;
+			moving = true;
+		}
 		
 	}
 	
@@ -134,16 +168,5 @@ public class Player extends Entity
 		this.down = down;
 	}
 
-	private void setAnimation()
-	{
-		if(moving)
-		{
-			playerAction = RUNNING;
-		}
-		else
-		{
-			playerAction = IDLE;
-		}
-		
-	}
+	
 }
