@@ -15,6 +15,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import plat.utilz.LoadSave;
+
 public class Player extends Entity
 {
 	private BufferedImage[][] animations;
@@ -46,11 +48,8 @@ public class Player extends Entity
 	
 	private void loadAnimations()
 	{
-		InputStream inputStream = getClass().getResourceAsStream("/res/player_sprites.png");
-
-		try 
-		{
-			BufferedImage image = ImageIO.read(inputStream);
+		
+			BufferedImage image = LoadSave.GetPlayerAtlas();
 			
 			animations = new BufferedImage[9][6];
 			for(int outerIndex = 0; outerIndex < animations.length; outerIndex++)
@@ -60,11 +59,6 @@ public class Player extends Entity
 					animations[outerIndex][index] = image.getSubimage( index * 64, outerIndex * 40, 64, 40);
 				}
 			}
-		} 
-		catch (IOException error) 
-		{
-			error.printStackTrace();
-		}
 		
 		
 		
