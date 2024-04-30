@@ -25,6 +25,7 @@ public class Player extends Entity
 	private boolean moving = false, attacking = false;;
 	private boolean left, right, up, down;
 	private float playerSpeed = 1.0f;
+	private int[][] levelData;
 	
 	
 	public Player(float xDelta, float yDelta, int width, int height)
@@ -65,6 +66,10 @@ public class Player extends Entity
 		
 		
 		
+	}
+	public void loadLevelData(int[][] leveldata)
+	{
+		this.levelData = levelData;
 	}
 	
 	private void setAnimation()
