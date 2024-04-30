@@ -10,13 +10,13 @@ public class LevelManager
 {
 	private Game game;
 	private BufferedImage[] levelSprite;
+	private Level levelOne;
 	
 	public LevelManager(Game game)
 	{
 		this.game = game;
-//		levelSprite = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
-		
 		importOutsideSprites();
+		levelOne = new Level(LoadSave.GetLevelData());
 	}
 	
 	
@@ -32,13 +32,20 @@ public class LevelManager
 				levelSprite[index] = image.getSubimage(secondIndex * 32, firstIndex * 32, 32, 32);
 			}
 		}
-		
 	}
 
 
 	public void draw(Graphics graphics)
 	{
-		graphics.drawImage(levelSprite[2],  0, 0, null);
+		for(int height = 0; height < Game.TILES_IN_HEIGHT; height++)
+		{
+			for(int width = 0; width < Game.TILES_IN_WIDTH; width++)
+			{
+				int index = levelOne.getSpriteIndex(width, height);
+				graphics.drawImage(levelSprite[index],  Game.TILES_SIZE * width, Game.TILES_SIZE * height, Game.TILES_SIZE, Game.TILES_SIZE, null);
+			}
+		}
+		
 	}
 	public void update()
 	{
