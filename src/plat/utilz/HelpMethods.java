@@ -6,7 +6,20 @@ public class HelpMethods
 {
 	public static boolean CanMoveHere(float xPosition, float yPosition, int width, int height, int[][] levelData)
 	{
-		
+		if (!IsSolid(xPosition, xPosition, levelData))
+		{
+			if(!IsSolid(xPosition + width, yPosition + height, levelData))
+			{
+				if(!IsSolid(xPosition + width, yPosition, levelData))
+				{
+					if(!IsSolid(xPosition, yPosition + height, levelData))
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 	
 	private static boolean IsSolid(float xPosition, float yPosition, int[][] levelData)
