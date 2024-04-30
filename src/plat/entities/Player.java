@@ -27,9 +27,9 @@ public class Player extends Entity
 	private float playerSpeed = 1.0f;
 	
 	
-	public Player(float xDelta, float yDelta)
+	public Player(float xDelta, float yDelta, int width, int height)
 	{
-		super(xDelta, yDelta);
+		super(xDelta, yDelta, width, height);
 		loadAnimations();
 	}
 	
