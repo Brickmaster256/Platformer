@@ -3,6 +3,7 @@ package plat.main;
 import java.awt.Graphics;
 
 import plat.entities.Player;
+import plat.gamestates.Gamestate;
 import plat.levels.LevelManager;
 
 public class Game implements Runnable
@@ -51,14 +52,51 @@ public class Game implements Runnable
 	public void update()
 	{
 		
-		levelManager.update();
-		player.update();
+		
+		
+		switch(Gamestate.state) 
+		{
+			case MENU:
+			{
+				
+				break;
+			}
+			case PLAYING:
+			{
+				levelManager.update();
+				player.update();
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
 	}
 	
 	public void render(Graphics graphics)
 	{
-		player.render(graphics);
-		levelManager.draw(graphics);
+		
+		switch(Gamestate.state) 
+		{
+			case MENU:
+			{
+				
+				break;
+			}
+			case PLAYING:
+			{
+				levelManager.draw(graphics);
+				player.render(graphics);
+			
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
+		
 	}
 
 	@Override
