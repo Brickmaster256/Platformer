@@ -1,5 +1,7 @@
 package plat.utilz;
 
+import java.awt.geom.Rectangle2D;
+
 import plat.main.Game;
 
 public class HelpMethods
@@ -42,5 +44,27 @@ public class HelpMethods
 			return true;
 		}
 		return false;
+	}
+	
+	public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed)
+	{
+		int currentTile = (int)(hitbox.x / Game.SCALE);
+		if (xSpeed > 0)
+		{
+			//Right
+			int tileXPos = currentTile * Game.TILES_SIZE;
+			int xOffSet = (int)(Game.TILES_SIZE - hitbox.width);
+			return tileXPos + xOffSet - 1;
+		}
+		else
+		{
+			//Left
+			return currentTile * Game.TILES_SIZE;
+		}
+	}
+
+	public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float hitbox, float airSpeed)
+	{
+		
 	}
 }

@@ -7,7 +7,7 @@ import static plat.utilz.Constants.Directions.UP;
 import static plat.utilz.Constants.PlayerConstants.*;
 
 import static plat.utilz.Constants.PlayerConstants.getSpriteAmount;
-import static plat.utilz.HelpMethods.CanMoveHere;
+import static plat.utilz.HelpMethods.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -30,6 +30,11 @@ public class Player extends Entity
 	private int[][] levelData;
 	private float xDrawOffset = 21 * Game.SCALE;
 	private float yDrawOffset = 4 * Game.SCALE;
+	private float airspeed = 0f;
+	private float gravity = 0.04f * Game.SCALE;
+	private float jumpSpeed = -2.25f * Game.SCALE;
+	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
+	private boolean inAir = false;
 	
 	
 	public Player(float xDelta, float yDelta, int width, int height)
@@ -127,44 +132,58 @@ public class Player extends Entity
 	private void updatePosition()
 	{
 		moving = false;
-		if (!left && !right && !up && !down)
+		if (!left && !right && !inAir)
 		{
 			return;
 		}
 		
-		float xSpeed = 0, ySpeed = 0;
+		float xSpeed = 0;
 		
-		if(left && !right)
+		if(left)
 		{
 			xSpeed -= playerSpeed;
 			
 		}
-		else if (right && !left)
+		if(right)
 		{
 			xSpeed += playerSpeed;
 			
 		}
 		
-		if (up && !down)
+		if(inAir)
 		{
-			ySpeed -= playerSpeed;
 			
 		}
-		else if (down && !up)
+		else
 		{
-			ySpeed += playerSpeed;
-			
+			updateXPos(xSpeed);
 		}
 		
-		if(CanMoveHere(hitbox.x + xSpeed, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData))
-		{
-			hitbox.x += xSpeed;
-			hitbox.y += ySpeed;
-			moving = true;
-		}
+		
+//		if(CanMoveHere(hitbox.x + xSpeed, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData))
+//		{
+//			hitbox.x += xSpeed;
+//			hitbox.y += ySpeed;
+//			moving = true;
+//		}
 		
 	}
 	
+	private void updateXPos(float xSpeed)
+	{
+		if(CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData))
+		{
+				hitbox.x += xSpeed;
+				
+   		}
+		else
+		{
+			hitbox.x = GetEntityXPosNextToWall(hitbox, xSpeed);
+		}
+			
+		
+	}
+
 	public void resetDirBooleans()
 	{
 		left = false;
