@@ -25,12 +25,12 @@ public class Player extends Entity
 	private int animationTick, animationIndex, animationSpeed = 30;
 	private int playerAction = IDLE;
 	private boolean moving = false, attacking = false;;
-	private boolean left, right, up, down;
+	private boolean left, right, up, down, jump;
 	private float playerSpeed = 1.0f;
 	private int[][] levelData;
 	private float xDrawOffset = 21 * Game.SCALE;
 	private float yDrawOffset = 4 * Game.SCALE;
-	private float airspeed = 0f;
+	private float airSpeed = 0f;
 	private float gravity = 0.04f * Game.SCALE;
 	private float jumpSpeed = -2.25f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
@@ -41,7 +41,7 @@ public class Player extends Entity
 	{
 		super(xDelta, yDelta, width, height);
 		loadAnimations();
-		initHitbox(xDelta, yDelta, 20 * Game.SCALE, 28 * Game.SCALE);
+		initHitbox(xDelta, yDelta, 20 * Game.SCALE, 27 * Game.SCALE);
 	}
 	
 	public void update()
@@ -132,6 +132,12 @@ public class Player extends Entity
 	private void updatePosition()
 	{
 		moving = false;
+		
+		if(jump)
+		{
+			jump();
+		}
+		
 		if (!left && !right && !inAir)
 		{
 			return;
@@ -152,13 +158,31 @@ public class Player extends Entity
 		
 		if(inAir)
 		{
-			
+			if(CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData))
+			{
+				hitbox.y += airSpeed;
+				airSpeed += gravity;
+				updateXPos(xSpeed);
+			}
+			{
+				hitbox.y= GetEntityYPosUnderRoofOrAboveFloor(hitbox, airSpeed);
+				if(airSpeed > 0)
+				{
+					resetInAir();
+				}
+				else
+				{
+					airSpeed = fallSpeedAfterCollision;
+				}
+				updateXPos(xSpeed);
+			}
 		}
 		else
 		{
 			updateXPos(xSpeed);
 		}
 		
+		moving = true;
 		
 //		if(CanMoveHere(hitbox.x + xSpeed, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData))
 //		{
@@ -168,6 +192,23 @@ public class Player extends Entity
 //		}
 		
 	}
+	
+	private void jump()
+	{
+		if(inAir)
+		{
+			return;
+		}
+		inAir = true;
+		airSpeed = jumpSpeed;
+	}
+	
+	private void resetInAir()
+	{
+		inAir = false;
+		airSpeed = 0;
+	}
+	
 	
 	private void updateXPos(float xSpeed)
 	{

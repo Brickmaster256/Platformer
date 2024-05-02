@@ -53,8 +53,8 @@ public class HelpMethods
 		{
 			//Right
 			int tileXPos = currentTile * Game.TILES_SIZE;
-			int xOffSet = (int)(Game.TILES_SIZE - hitbox.width);
-			return tileXPos + xOffSet - 1;
+			int xOffset = (int)(Game.TILES_SIZE - hitbox.width);
+			return tileXPos + xOffset - 1;
 		}
 		else
 		{
@@ -65,6 +65,18 @@ public class HelpMethods
 
 	public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float hitbox, float airSpeed)
 	{
-		
+		int currentTile = (int)(hitbox.y / Game.TILES_SIZE);
+		if(airSpeed > 0)
+		{
+			//Falling - toyching floor
+			int tileYPos = currentTile * Game.TILES_SIZE;
+			int yOffset = (int)(Game.TILES_SIZE - hitbox.height);
+			return tileYPos + yOffset - 1;
+		}
+		else
+		{
+			//Jumping
+			return currentTile * Game.TILES_SIZE;
+		}
 	}
 }
