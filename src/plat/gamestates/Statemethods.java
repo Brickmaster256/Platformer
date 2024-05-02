@@ -8,6 +8,8 @@ public interface Statemethods
 {
 	public void update();
 	
+	
+	
 	public void draw(Graphics graphics);
 	
 	public void mouseClicked(MouseEvent event);
