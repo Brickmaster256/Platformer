@@ -27,16 +27,7 @@ public class Playing extends State implements Statemethods
 		player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
 	}
 	
-	public void windowLostFocus()
-	{
-		player.resetDirBooleans();
-	}
 	
-	public Player getPlayer()
-	{
-		return player;
-	}
-
 	@Override
 	public void update()
 	{
@@ -80,16 +71,57 @@ public class Playing extends State implements Statemethods
 	}
 
 	@Override
-	public void keyPressed(KeyEvent event)
+	public void keyPressed(KeyEvent pressed)
 	{
-		// TODO Auto-generated method stub
+		switch(pressed.getKeyCode())
+		{
+			case KeyEvent.VK_A:
+			{
+				player.setLeft(true);
+				break;
+			}
+			case KeyEvent.VK_D:
+			{	
+				player.setRight(true);
+				break;
+			}
+			case KeyEvent.VK_SPACE:
+			{
+				player.setJump(true);
+			}
+		}
 		
 	}
 
 	@Override
-	public void keyReleased(KeyEvent event)
+	public void keyReleased(KeyEvent released)
 	{
-		// TODO Auto-generated method stub
+		switch(released.getKeyCode())
+		{
+			case KeyEvent.VK_A:
+			{	
+				player.setLeft(false);
+			}
+			case KeyEvent.VK_D:
+			{	
+				player.setRight(false);
+			}
+			case KeyEvent.VK_SPACE:
+			{
+				player.setJump(false);
+			}
+		}
 		
 	}
+	
+	public void windowLostFocus()
+	{
+		player.resetDirBooleans();
+	}
+	
+	public Player getPlayer()
+	{
+		return player;
+	}
+
 }
