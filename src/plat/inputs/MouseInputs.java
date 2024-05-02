@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import plat.gamestates.Gamestate;
 import plat.main.GamePanel;
 
 public class MouseInputs implements MouseListener, MouseMotionListener
@@ -31,11 +32,25 @@ public class MouseInputs implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseClicked(MouseEvent clicked) 
 	{
-		if(clicked.getButton() == MouseEvent.BUTTON1)
+		switch(Gamestate.state) 
 		{
-			panel.getGame().getPlayer().setAttacking(true);
-		}
+			case MENU:
+			{
+				panel.getGame().getMenu().mouseClicked(clicked);
+				break;
+			}
+			case PLAYING:
+			{
+				panel.getGame().getPlaying().mouseClicked(clicked);
+				break;
+			}
+			
+			default:
+			{
+				break;
+			}
 		
+		}
 	}
 
 	@Override

@@ -31,21 +31,26 @@ public class Playing extends State implements Statemethods
 	@Override
 	public void update()
 	{
-		// TODO Auto-generated method stub
+		levelManager.update();
+		player.update();
 		
 	}
 
 	@Override
 	public void draw(Graphics graphics)
 	{
-		// TODO Auto-generated method stub
+		levelManager.draw(graphics);
+		player.render(graphics);
 		
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent event)
+	public void mouseClicked(MouseEvent clicked)
 	{
-		// TODO Auto-generated method stub
+		if(clicked.getButton() == MouseEvent.BUTTON1)
+		{
+			player.setAttacking(true);
+		}
 		
 	}
 
@@ -114,10 +119,7 @@ public class Playing extends State implements Statemethods
 		
 	}
 	
-	public void windowLostFocus()
-	{
-		player.resetDirBooleans();
-	}
+	
 	
 	public Player getPlayer()
 	{

@@ -85,6 +85,7 @@ public class Game implements Runnable
 			case PLAYING:
 			{
 				
+			
 				break;
 			}
 			default:
@@ -144,6 +145,21 @@ public class Game implements Runnable
 			
 		}
 		
+	}
+	
+	public void windowLostFocus()
+	{
+		
+	}
+	
+	public Menu getMenu()
+	{
+		return menu;
+	}
+	
+	public Playing getPlaying()
+	{
+		return playing;
 	}
 	
 	
