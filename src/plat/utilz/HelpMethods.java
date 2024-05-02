@@ -4,7 +4,7 @@ import plat.main.Game;
 
 public class HelpMethods
 {
-	public static boolean CanMoveHere(float xPosition, float yPosition, int width, int height, int[][] levelData)
+	public static boolean CanMoveHere(float xPosition, float yPosition, float width, float height, int[][] levelData)
 	{
 		if (!IsSolid(xPosition, xPosition, levelData))
 		{
@@ -24,20 +24,20 @@ public class HelpMethods
 	
 	private static boolean IsSolid(float xPosition, float yPosition, int[][] levelData)
 	{
-		if(xPosition < 0 || xPosition > Game.GAME_WIDTH)
+		if(xPosition < 0 || xPosition >= Game.GAME_WIDTH)
 		{
 			return true;
 		}
-		if(yPosition < 0 || yPosition > Game.GAME_HEIGHT) {
+		if(yPosition < 0 || yPosition >= Game.GAME_HEIGHT) {
 			return true;
 		}
 		
 		float xIndex = xPosition / Game.TILES_SIZE;
 		float yIndex = yPosition / Game.TILES_SIZE;
 		
-		int value = levelData[(int) xIndex][(int) yIndex];
+		int value = levelData[(int) yIndex][(int) xIndex];
 		
-		if(value >= 48 || value < 0 || value == 1)
+		if(value >= 48 || value < 0 || value != 11)
 		{
 			return true;
 		}
