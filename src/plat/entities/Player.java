@@ -155,6 +155,13 @@ public class Player extends Entity
 			xSpeed += playerSpeed;
 			
 		}
+		if(!inAir)
+		{
+			if(!IsEntityOnFloor(hitbox, levelData))
+			{
+				inAir = true;
+			}
+		}
 		
 		if(inAir)
 		{
@@ -276,6 +283,11 @@ public class Player extends Entity
 	public void setDown(boolean down)
 	{
 		this.down = down;
+	}
+	
+	public void setJump(boolean jump)
+	{
+		this.jump = jump;
 	}
 
 	
