@@ -69,7 +69,7 @@ public class Playing extends State implements Statemethods
 	}
 
 	@Override
-	public void mousepressed(MouseEvent event)
+	public void mousePressed(MouseEvent event)
 	{
 		// TODO Auto-generated method stub
 		
@@ -93,6 +93,10 @@ public class Playing extends State implements Statemethods
 			case KeyEvent.VK_SPACE:
 			{
 				player.setJump(true);
+			}
+			case KeyEvent.VK_BACK_SPACE:
+			{
+				Gamestate.state = Gamestate.MENU;
 			}
 		}
 		
@@ -119,6 +123,10 @@ public class Playing extends State implements Statemethods
 		
 	}
 	
+	public void windowFocusLost()
+	{
+		player.resetDirBooleans();
+	}
 	
 	
 	public Player getPlayer()

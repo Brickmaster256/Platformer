@@ -1,5 +1,6 @@
 package plat.gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -8,29 +9,29 @@ import plat.main.Game;
 
 public class Menu extends State implements Statemethods
 {
-
+	
+	
 	public Menu(Game game)
 	{
 		super(game);
-		
 	}
 
 	@Override
 	public void update()
 	{
-		
+		System.out.println("");
 		
 	}
 
 	@Override
 	public void draw(Graphics graphics)
 	{
-		
-		
+		graphics.setColor(Color.black);
+		graphics.drawString("MENU", Game.GAME_WIDTH / 2, 200);
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent event)
+	public void mouseClicked(MouseEvent clicked)
 	{
 		
 		
@@ -50,7 +51,7 @@ public class Menu extends State implements Statemethods
 	}
 
 	@Override
-	public void mousepressed(MouseEvent event)
+	public void mousePressed(MouseEvent event)
 	{
 		
 		
@@ -59,12 +60,15 @@ public class Menu extends State implements Statemethods
 	@Override
 	public void keyPressed(KeyEvent event)
 	{
-		
+		if(event.getKeyCode() == KeyEvent.VK_ENTER)
+		{
+			Gamestate.state = Gamestate.PLAYING;
+		}
 		
 	}
 
 	@Override
-	public void keyReleased(KeyEvent event)
+	public void keyReleased(KeyEvent released)
 	{
 		
 		

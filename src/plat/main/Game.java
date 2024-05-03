@@ -1,10 +1,12 @@
 package plat.main;
 
 import java.awt.Graphics;
-import java.awt.Menu;
+
 
 import plat.gamestates.Gamestate;
 import plat.gamestates.Playing;
+
+import plat.gamestates.Menu;
 
 
 public class Game implements Runnable
@@ -40,7 +42,8 @@ public class Game implements Runnable
 	
 	private void initClasses()
 	{
-		
+		menu = new Menu(this);
+		playing = new Playing(this);
 	}
 
 	private void startGameLoop()
@@ -57,12 +60,12 @@ public class Game implements Runnable
 		{
 			case MENU:
 			{
-				
+				menu.update();
 				break;
 			}
 			case PLAYING:
 			{
-				
+				playing.update();
 				break;
 			}
 			default:
@@ -79,12 +82,12 @@ public class Game implements Runnable
 		{
 			case MENU:
 			{
-				
+				menu.draw(graphics);
 				break;
 			}
 			case PLAYING:
 			{
-				
+				playing.draw(graphics);
 			
 				break;
 			}
@@ -149,7 +152,10 @@ public class Game implements Runnable
 	
 	public void windowLostFocus()
 	{
-		
+		if(Gamestate.state == Gamestate.PLAYING) 
+		{
+			playing.getPlayer().resetDirBooleans();
+		}
 	}
 	
 	public Menu getMenu()

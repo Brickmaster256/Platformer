@@ -1,38 +1,58 @@
 package plat.inputs;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import plat.gamestates.Gamestate;
 import plat.main.GamePanel;
-import static plat.utilz.Constants.Directions.*;
 
-public class KeyboardInputs implements KeyListener 
-{
-	private GamePanel panel;
-	
-	public KeyboardInputs(GamePanel panel)
-	{
-		this.panel = panel;
+public class KeyboardInputs implements KeyListener {
+	private GamePanel gamePanel;
+	public KeyboardInputs(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
 	}
-	
 	@Override
- 	public void keyTyped(KeyEvent typed) 
-	{
+	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void keyPressed(KeyEvent pressed) 
-	{
+	public void keyReleased(KeyEvent e) {
 		
-		
+		switch (Gamestate.state) 
+		{
+			case MENU:
+			{
+				gamePanel.getGame().getMenu().keyReleased(e);
+				break;
+			}
+			case PLAYING:
+			{
+				gamePanel.getGame().getPlaying().keyReleased(e);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
 	}
+
 	
+	
+
 	@Override
-	public void keyReleased(KeyEvent released) 
-	{
-		
+	public void keyPressed(KeyEvent e) {
+
+		switch (Gamestate.state) {
+		case MENU:
+			gamePanel.getGame().getMenu().keyPressed(e);
+			break;
+
+		case PLAYING:
+			gamePanel.getGame().getPlaying().keyPressed(e);
+			break;
+		default:
+			break;
+		}
 	}
-	
 }
