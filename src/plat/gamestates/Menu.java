@@ -6,14 +6,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import plat.main.Game;
+import plat.ui.MenuButton;
 
 public class Menu extends State implements Statemethods
 {
-	
+	private MenuButton[] buttons = new MenuButton[3];
 	
 	public Menu(Game game)
 	{
 		super(game);
+		loadButtons();
+	}
+
+	private void loadButtons()
+	{
+		buttons[0] = new MenuButton(Game.GAME_WIDTH / 2, (int) (150 * Game.SCALE), 0, Gamestate.PLAYING);
+		buttons[0] = new MenuButton(Game.GAME_WIDTH / 2, (int) (150 * Game.SCALE), 0, Gamestate.OPTIONS);
+		buttons[0] = new MenuButton(Game.GAME_WIDTH / 2, (int) (150 * Game.SCALE), 0, Gamestate.QUIT);
 	}
 
 	@Override
