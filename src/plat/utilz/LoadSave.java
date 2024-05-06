@@ -2,8 +2,12 @@ package plat.utilz;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
@@ -67,5 +71,49 @@ public class LoadSave
 		
 		return levelData;
 	}
+	
+	private static ArrayList<Integer> ReadFromFile(File file)
+	{
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		try
+		{
+			Scanner scanner = new Scanner(file);
+			
+			while(scanner.hasNextLine())
+			{
+				list.add(scanner.nextInt());
+			}
+			scanner.close();
+		}
+		catch (FileNotFoundException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	public static int[][] GetLevelData(String name)
+	{
+		File levelFile = new File("res/" + name + ".txt");
+		
+		if (levelFile.exists()) 
+		{
+			ArrayList<Integer> list = ReadFromFile(levelFile);
+			return Utilz.ArrayListTo2Dint(list, 20, 20);
+		}
+		else
+		{
+			System.out.println("File: " + name + " does not exists! ");
+			return null;
+		}
+		
+		
+		
+		
+	}
+	
+	
 
 }

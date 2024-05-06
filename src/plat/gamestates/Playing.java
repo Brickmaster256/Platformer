@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import plat.entities.Player;
 import plat.levels.LevelManager;
 import plat.main.Game;
+import plat.utilz.LoadSave;
 
 public class Playing extends State implements Statemethods
 {
@@ -41,6 +42,10 @@ public class Playing extends State implements Statemethods
 	{
 		levelManager.draw(graphics);
 		player.render(graphics);
+		
+	}
+	private void loadDefaultLevel()
+	{
 		
 	}
 

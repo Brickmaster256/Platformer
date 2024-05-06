@@ -33,7 +33,8 @@ public class LevelManager
 			}
 		}
 	}
-
+	
+	
 
 	public void draw(Graphics graphics)
 	{
