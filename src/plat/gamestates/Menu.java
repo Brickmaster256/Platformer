@@ -97,6 +97,7 @@ public class Menu extends State implements Statemethods
 				}
 			}
 		}
+		resetButtons();
 		
 	}
 
@@ -111,7 +112,7 @@ public class Menu extends State implements Statemethods
 				break;
 			}
 		}
-		resetButtons();
+		
 		
 	}
 
