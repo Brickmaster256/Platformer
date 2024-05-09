@@ -13,7 +13,7 @@ import plat.main.Game;
 import plat.utilz.LoadSave;
 public class Player extends Entity {
 	private BufferedImage[][] animations;
-	private int aniTick, aniIndex, aniSpeed = 25;
+	private int animationTick, animationIndex, animationSpeed = 25;
 	private int playerAction = IDLE;
 	private boolean moving = false, attacking = false;
 	
@@ -45,18 +45,18 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
+		g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 		
 //		drawHitbox(g);
 	}
 
 	private void updateAnimationTick() {
-		aniTick++;
-		if (aniTick >= aniSpeed) {
-			aniTick = 0;
-			aniIndex++;
-			if (aniIndex >= getSpriteAmount(playerAction)) {
-				aniIndex = 0;
+		animationTick++;
+		if (animationTick >= animationSpeed) {
+			animationTick = 0;
+			animationIndex++;
+			if (animationIndex >= getSpriteAmount(playerAction)) {
+				animationIndex = 0;
 				attacking = false;
 			}
 		}
@@ -79,11 +79,11 @@ public class Player extends Entity {
 			playerAction = ATTACK_ONE;
 
 		if (startAni != playerAction)
-			resetAniTick();
+			resetanimationTick();
 	}
-	private void resetAniTick() {
-		aniTick = 0;
-		aniIndex = 0;
+	private void resetanimationTick() {
+		animationTick = 0;
+		animationIndex = 0;
 	}
 
 	private void updatePos() {

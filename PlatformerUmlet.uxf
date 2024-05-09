@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>8</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>536</y>
-      <w>240</w>
-      <h>192</h>
+      <x>174</x>
+      <y>174</y>
+      <w>162</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>Game(controller)
 bg=red
 --
-+window: JFrame
-
+- window: GameFrame
+- panel: GamePanel
+- gameThread: Thread
+- playing: Playing
+- menu: Menu
++ SCALE: final static float
+- FPS_SET: final int
+- UPS_SET: final int
++ TILES_DEFAULT_SIZE: final static int
++ TILES_IN_WIDTH: finat static int
++ TILES_IN_HEIGHT: final static int
++ TILES_SIZE: final static int
++ GAME_WIDTH: final static int
++ GAME_HEIGHT: final static int
 --
-+Game(): constructor
-+ start(): void</panel_attributes>
++ Game(): constructor
+- initClasses(): void
+- startGameLoop(): void
++ update(): void
++ render(Graphics): void
++ run(): void
++ windowLostFocus(): void
++ Getters
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>744</x>
-      <y>536</y>
-      <w>224</w>
-      <h>192</h>
+      <x>528</x>
+      <y>174</y>
+      <w>150</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>GameFrame
 bg=red
@@ -40,55 +60,32 @@ bg=red
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>248</x>
-      <y>536</y>
-      <w>256</w>
-      <h>192</h>
+      <x>336</x>
+      <y>174</y>
+      <w>192</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>GamePanel
 bg=red
 --
--app: Game(controller)
--mouse: MouseInput
--deltaX: float
-- deltaY: float
--xDir: float
--yDir: float
--frames: int
--lastCheck : long
+- game: Game(controller)
+- mouse: MouseInput
 --
-+set()/get()
-+GamePanel(Game) : constructor
-#paintComponent(Graphics) : void
--updateRectangle() : void
--setupPanel() : void
--setupListeners() : void
--setupLayout() : void
++ GamePanel(Game) : constructor
+# paintComponent(Graphics) : void
+- setPanelSize(): void
++ updateGame(): void
++ getGame(): game
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>528</x>
-      <y>336</y>
-      <w>112</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>/Runnable/
-bg=cyan
-transparency=0
---
-run() : void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>216</x>
-      <y>832</y>
-      <w>240</w>
-      <h>152</h>
+      <x>744</x>
+      <y>288</y>
+      <w>180</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>KeyboardInputs
 bg=orange
@@ -104,10 +101,10 @@ bg=orange
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>456</x>
-      <y>832</y>
-      <w>248</w>
-      <h>152</h>
+      <x>744</x>
+      <y>402</y>
+      <w>186</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>MouseInputs
 bg=orange
@@ -125,29 +122,54 @@ bg=orange
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>568</x>
-      <y>384</y>
-      <w>24</w>
-      <h>168</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>208</y>
-      <w>224</w>
-      <h>168</h>
+      <x>30</x>
+      <y>174</y>
+      <w>144</w>
+      <h>354</h>
     </coordinates>
     <panel_attributes>Player
 bg=yellow
 transparency=0
 layer=1
 --
+- animations: BufferedImage[][]
+- animationTick: int
+- animationIndex: int
+- animationSpeed: int
+
+- moving: boolean
+- attacking: boolean
+- left: boolean
+- right: boolean
+- up: boolean
+- down: boolean
+- jump: boolean
+- inAir: boolean
+
+- playerSpeed: float
+- xDrawOffSet: float
+- yDrawOffSet: float
+- airSpeed: float
+- gravity: float
+- jumpSpeed: float
+- fallSpeedAfterCollisionL float
+-
+
++ Player(): constructor
++ get/set()
++ update(): void
++ render(): void
+- updateAnimationTick(): void
+- setanimation(): void
+- resetanimationTick(): void
+- updatePos(): void
+- jump(): void
+- resetInAir(): void
+- updateXPos(float): void
+- loadAnimation(): void
+- loadLevelData(int[][]): void
 
 </panel_attributes>
     <additional_attributes/>
@@ -155,41 +177,424 @@ layer=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>216</x>
-      <y>96</y>
-      <w>168</w>
-      <h>72</h>
+      <x>12</x>
+      <y>6</y>
+      <w>186</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>/Entity/
 bg=yellow
 -
 # xDelta: float
 # yDelta: float
+# width:int
+# height: int
+# hitbox: Rectangle2D.Float
 -
-Entity(float, float): constructor
-</panel_attributes>
++Entity(float, float): constructor
+#drawhitBox(Graphics): void
+# initHitbox(float, float, int, int): void
++ getHitBox(): Rectangle2D.Float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>296</x>
-      <y>160</y>
+      <x>96</x>
+      <y>120</y>
       <w>24</w>
-      <h>64</h>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>318</y>
+      <w>156</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>/Statemethods/
+bg=magenta
+-
++ update(): void
++ draw(Graphics): void
++ mouseClicked(MouseEvent): void
++ mousePressed(MouseEvent): void
++ mouseReleased(MouseEvent): void
++ mouseMoved(MouseEvent): void
++ keyPressed(Keyevent): void
++ keyReleased(KeyEvent): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>558</x>
+      <y>330</y>
+      <w>156</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>Playing
+bg=magenta
+-
+- player: Player
+- levelManager: LevelManager
+-
++ Playing(game): constructor
+- initClasses(): void
++ windowFocusLost(): void
++ getPlayer(): Player
++ update(): void
++ draw(Graphics): void
++ mouseClicked(MouseEvent): void
++ mousePressed(MouseEvent): void
++ mouseReleased(MouseEvent): void
++ mouseMoved(MouseEvent): void
++ keyPressed(Keyevent): void
++ keyReleased(KeyEvent): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>498</y>
+      <w>156</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>Menu
+bg=magenta
+-
+- buttons: MenuButton[]
+- backgroundImage: BufferedImage
+- menuX: int
+- menuY: int
+- menuWidth: int
+- menuHeight: int
+-
++ Menu(game): constructor
+- loadBackground(): void
+- loadButtons(): void
++ update(): void
++ draw(Graphics): void
++ mouseClicked(MouseEvent): void
++ mousePressed(MouseEvent): void
++ mouseReleased(MouseEvent): void
++ mouseMoved(MouseEvent): void
++ keyPressed(Keyevent): void
++ keyReleased(KeyEvent): void
+- resetButtons(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>174</x>
+      <y>414</y>
+      <w>174</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>State
+bg=magenta
+-
+# game: Game(controller)
+-
++ State(game): constructor
++ isIn(MouseEvent, MenuButton): boolean
++ getGame(): Game</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>240</y>
+      <w>114</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>Gamestate
+bg=magenta
+-
++ PLAYING
++ MENU
++ OPTIONS
++ QUIT
++ state: static Gamestate</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>0</y>
+      <w>156</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>LevelManager
+bg=green
+-
+- Game: game
+- levelSprite: BufferedImage[]
+- private levelOne: Level
+-
++ LevelManager(Game): Constructor
+- importOutsideSprite(): void
++ draw(Graphics): void
++ update(): void
++ getCurrentlevel(): Level
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>354</x>
+      <y>0</y>
+      <w>138</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Level
+bg=green
+-
+- levelData: int[][]
+-
++ Level(int[][]): Constructor
++ getSpriteIndex(int,int): int
++ getLevelData(): int[][]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>24</y>
+      <w>216</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes>MenuButton
+bg=blue
+-
+- xPosition: int
+- yPosition: int
+- rowIndex: int
+- index: int
+- xOffsetCenter: int
+- state: Gamestate
+- images: bufferedImage[]
+- mouseOver: boolean
+- mousePressed: boolean
+- bounds: rectangle
+-
++ MenuButton(int, int, int, Gamestate): Constructor
+- initBounds(): void
+- loadImages(): void
++ draw(graphics): void
++ update(): void
++ setmouseOVer(boolean): void
++ isMouseOver(): boolean
++ setmousePressed(boolean)
++ public getbounds(): Rectangle
++ applyGamestate(): void
++ resetBools(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>198</x>
+      <y>702</y>
+      <w>186</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>LoadSave
+bg=gray
+-
++ PLAYER_ATLAS: static final String
++ LEVEL_ATLAS: static final String
++ LEVEL_ONE_DATA: static final String
++ MENU_BUTTONS: static final String
++ MENU_BACKGROUND: static final String
+-
++ GetSpriteAtlas(String): BufferedImage
++ GetLevelData(): int[][]
++ ReadFromFile(file): ArrayList&lt;Integer&gt;
++ GetlevelData(String): int[][]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>138</x>
+      <y>816</y>
+      <w>324</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>HelpMethods
+bg=gray
+-
+
+-
++ CanMoveHere(float, flaot, float, float, int[][]): static boolean
+- IsSolid(float, float, int[][]): static boolean
++ GetEntityXPosNextToWall(Rectangle2D.Float, float): static  float
++ GetEntityYPosUnderRoofOrAboveFloor(rectangle2D.Float, float): static float
++ IsEntityOnFloor(Rectangle2D.Float, int[][]): static boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>624</x>
+      <y>798</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Constants.Directions
+bg=gray
+-
++ LEFT: static final int
++ UP: static final int
++ DOWN: static final int
++ RIGHT: static final int
+-</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>56</x>
-      <y>104</y>
-      <w>152</w>
-      <h>24</h>
+      <x>486</x>
+      <y>360</y>
+      <w>84</w>
+      <h>42</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>408</y>
+      <w>30</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>246</x>
+      <y>468</y>
+      <w>138</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;210.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>426</y>
+      <w>228</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>66</x>
+      <y>564</y>
+      <w>258</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Utilz
+bg=gray
+-
+
+-
+ArrayListTo2Dint(ArrayLIst&lt;Integer&gt;, int, int): static int[][]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>714</y>
+      <w>156</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Constants.UI.Buttons
+bg=gray
+-
++ B_WIDTH_DEFAULT: static final int
++ B_HEIGHT_DEFAILT: static final int
++ B_WIDTH: static final int
++ B_HEIGHT: static final int
+-
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>624</x>
+      <y>882</y>
+      <w>168</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>Constants.PlayerConstants
+bg=gray
+-
++ IDLE: static final int
++ RUNNING: static final int
++ JUMP: static final int
++ FALLING: static final int
++ GROUND: static final int
++ HIT: static final int
++ ATTACK_ONE: static final int
++ ATTACK_JUMP_ONE: static final int
++ ATTACK_JUMP_ONE: static finat int
+-
++ getSpriteAmount(int): static int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>648</y>
+      <w>216</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>Constants
+bg=gray
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>624</x>
+      <y>672</y>
+      <w>168</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>Constants.UI
+bg=gray
+-
+
+-
+layer=1</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
