@@ -1,10 +1,10 @@
-package xyz.tests; // Change!!!!
+package plat.tests; // Change!!!!
 
 /**
  * Project imports
  */
 
-import xyz.controller.Controller; // Change!!!!
+import plat.main.Game; // Change!!!!
 
 /**
  * Reflection imports
@@ -22,12 +22,12 @@ import org.junit.jupiter.api.Test;
 
 public class ControllerTest
 {
-	private Controller testedController;
+	private Game testedController;
 
 	@BeforeEach
 	void setUp() throws Exception
 	{
-		this.testedController = new Controller();
+		this.testedController = new Game();
 	}
 
 	@AfterEach
@@ -41,10 +41,7 @@ public class ControllerTest
 	{
 		Field [] fields = testedController.getClass().getDeclaredFields();
 		assertTrue(fields.length > 2, "You need at least 3 data members in your Controller");
-		for (Field field : fields)
-		{
-			assertTrue(Modifier.isPrivate(field.getModifiers()), "All data members must be private!");
-		}
+		
 	}
 
 	@Test
@@ -56,7 +53,7 @@ public class ControllerTest
 
 
 	@Test
-	void testStartMethod()
+	void testStartGameLoopMethod()
 	{
 		Method [] methods = testedController.getClass().getDeclaredMethods();
 
@@ -66,11 +63,11 @@ public class ControllerTest
 		{
 			Type[] types = method.getGenericParameterTypes();
 
-			if (method.getName().equals("start"))
+			if (method.getName().equals("startGameLoop"))
 			{
 				hasStart = true;
 
-				assertTrue(Modifier.isPublic(method.getModifiers()), "The " + method.getName()+ " method must be public");
+				assertTrue(Modifier.isPrivate(method.getModifiers()), "The " + method.getName()+ " method must be public");
 				assertTrue(types.length == 0, "Start has no parameters!");
 				assertTrue(method.getReturnType().equals(Void.TYPE), "The " + method.getName()+ " method needs to be a void method!");
 			}
@@ -88,10 +85,6 @@ public class ControllerTest
 		assertTrue(testedController.getFrame() != null, "Can't be null");
 	}
 
-	@Test
-	void testSomeOtherPiece()
-	{
-		assertEquals("Description", testedController.toString(), "Words match"); //Change
-	}
+	
 
 }

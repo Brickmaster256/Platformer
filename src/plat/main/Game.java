@@ -176,6 +176,12 @@ public class Game implements Runnable
 	{
 		return playing;
 	}
+
+	public GameFrame getFrame()
+	{
+		// TODO Auto-generated method stub
+		return frame;
+	}
 	
 	
 }

@@ -9,8 +9,11 @@ public class GameFrame
 {
 	private JFrame jframe;
 	
+	
 	public GameFrame(GamePanel panel) 
 	{
+	
+		
 		jframe = new JFrame();
 		
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

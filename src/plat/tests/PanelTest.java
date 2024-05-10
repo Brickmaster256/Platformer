@@ -1,10 +1,10 @@
-package xyz.tests; //Change me
+package plat.tests; //Change me
 
 /**
  * Project imports
  */
-import xyz.controller.Controller; //Change me
-import xyz.view.XYZPanel; //Change me
+import plat.main.Game; //Change me
+import plat.main.GamePanel; //Change me
 import javax.swing.*;
 
 import java.awt.*;
@@ -23,14 +23,14 @@ import org.junit.jupiter.api.Test;
 
 public class PanelTest
 {
-	private Controller testedController; //Change me
-	private XYZPanel testedPanel; //Change me
+	private Game testedController; //Change me
+	private GamePanel testedPanel; //Change me
 
 	@BeforeEach
 	void setUp() throws Exception
 	{
-		this.testedController = new Controller(); //Change me
-		this.testedPanel = new XYZPanel(testedController); //Change me
+		this.testedController = new Game(); //Change me
+		this.testedPanel = new GamePanel(testedController); //Change me
 	} 
 
 	@AfterEach
