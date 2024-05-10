@@ -29,7 +29,7 @@ public class FrameTest
 	private GamePanel panel;
 
 	@BeforeEach
-	void setUp() throws Exception
+	void setUp() throws Exception 
 	{
 		this.testedController = new Game();
 		this.testedFrame = new GameFrame(panel);

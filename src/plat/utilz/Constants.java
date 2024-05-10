@@ -1,13 +1,21 @@
 package plat.utilz;
 
 import plat.main.Game;
-
+/**
+ *  Class that holds constants
+ */
 public class Constants
 {
+	/**
+	 * different sub-classes with different constants
+	 */
 	public static class UI
 	{
 		public static class Buttons
 		{
+			/**
+			 * constants that define the dimensions of the buttons
+			 */
 			public static final int B_WIDTH_DEFAULT = 140;
 			public static final int B_HEIGHT_DEFAULT = 56;
 			public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.SCALE);
@@ -17,6 +25,9 @@ public class Constants
 	
 	public static class Directions
 	{
+		/**
+		 * constants that define the directions a player can go
+		 */
 		public static final int LEFT = 0;
 		public static final int UP = 1;
 		public static final int RIGHT = 2;
@@ -24,6 +35,9 @@ public class Constants
 	}
 	public static class PlayerConstants
 	{
+		/**
+		 *  constants defining different animation
+		 */
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
 		public static final int JUMP = 2;
@@ -34,6 +48,11 @@ public class Constants
 		public static final int ATTACK_JUMP_ONE = 7;
 		public static final int ATTACK_JUMP_TWO = 8;
 		
+		/**
+		 * 
+		 * @param playerAction
+		 * @return switches between the different animations the player has
+		 */
 		public static int getSpriteAmount(int playerAction)
 		{
 			switch(playerAction)
