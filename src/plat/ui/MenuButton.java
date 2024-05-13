@@ -7,9 +7,14 @@ import java.awt.image.BufferedImage;
 import plat.gamestates.Gamestate;
 import plat.utilz.LoadSave;
 import static plat.utilz.Constants.UI.Buttons.*;
-
+/** 
+ * creates the buttons for the  menu state
+ */
 public class MenuButton
 {
+	/**
+	 * initializes the position, state, dimesions, and visuals of the buttons
+	 */
 	private int xPosition, yPosition, rowIndex, index;
 	private int xOffsetCenter = B_WIDTH / 2;
 	private Gamestate state;
@@ -28,14 +33,18 @@ public class MenuButton
 		
 	}
 
-	
+	/**
+	 * establishes the bounds the of the button
+	 */
 	private void initBounds()
 	{
 		bounds = new Rectangle(xPosition - xOffsetCenter, yPosition, B_WIDTH, B_HEIGHT);
 		
 	}
 
-
+	/**
+	 * loads the visuals of the buttons
+	 */
 	private void loadImages()
 	{
 		images = new BufferedImage[3];
@@ -46,12 +55,17 @@ public class MenuButton
 		}
 	}
 	
-	
+	/**
+	 * draws the buttons
+	 * @param graphics
+	 */
 	public void draw(Graphics graphics)
 	{
 		graphics.drawImage(images[index], xPosition - xOffsetCenter, yPosition, B_WIDTH, B_HEIGHT, null);
 	}
-	
+	/**
+	 * updates the buttons when mouse hovers or clicks it
+	 */
 	public void update()
 	{
 		index = 0;
@@ -64,7 +78,10 @@ public class MenuButton
 			index = 2;
 		}
 	}
-
+	/**
+	 *	getters and setters
+	 * @return
+	 */
 	public boolean isMouseOver()
 	{
 		return mouseOver;
@@ -74,7 +91,7 @@ public class MenuButton
 	{
 		this.mouseOver = mouseOver;
 	}
-
+	
 	public boolean isMousePressed()
 	{
 		return mousePressed;

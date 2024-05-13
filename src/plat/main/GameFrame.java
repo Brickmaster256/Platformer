@@ -5,6 +5,9 @@ import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
 
+/**
+ * this class creates the frame for the game
+ */
 public class GameFrame extends JFrame
 {
 	private JFrame jframe;

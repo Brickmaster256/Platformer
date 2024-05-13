@@ -2,6 +2,9 @@ package plat.utilz;
 
 import java.util.ArrayList;
 
+/**
+ * suppose to turn the data into the a 2d array
+ */
 public class Utilz
 {
 	public static int[][] ArrayListTo2Dint(ArrayList<Integer> list, int ySize, int xSize)

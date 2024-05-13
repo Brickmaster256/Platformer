@@ -1,5 +1,9 @@
 package plat.levels;
 
+/**
+ * creates a simple level layout with the dimesions and the data type
+ */
+
 public class Level
 {
 	private int[][] levelData;

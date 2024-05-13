@@ -7,6 +7,10 @@ import java.awt.event.MouseMotionListener;
 import plat.gamestates.Gamestate;
 import plat.main.GamePanel;
 
+/**
+ * this class is responsible for processing some of the mouse inputs
+ */
+
 public class MouseInputs implements MouseListener, MouseMotionListener
 {
 	private GamePanel panel;

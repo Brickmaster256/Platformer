@@ -5,6 +5,10 @@ import java.awt.event.KeyListener;
 import plat.gamestates.Gamestate;
 import plat.main.GamePanel;
 
+/**
+ * this class process the keyboard inputs
+ */
+
 public class KeyboardInputs implements KeyListener {
 	private GamePanel gamePanel;
 	public KeyboardInputs(GamePanel gamePanel) {

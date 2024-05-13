@@ -19,11 +19,22 @@ import plat.inputs.MouseInputs;
 import static plat.utilz.Constants.PlayerConstants.*;
 import static plat.utilz.Constants.Directions.*;
 
+/**
+ * craets the panel that goes into the game
+ */
+
 public class GamePanel extends JPanel
 {
+	/**
+	 * gets the game class and the mouseInputs
+	 */
 	private MouseInputs mouseInputs;
 	private Game game;
 	
+	/**
+	 * initializes the game and the panel along with creating a standard size
+	 * @param game
+	 */
 	public GamePanel(Game game) 
 	{
 		
@@ -37,7 +48,9 @@ public class GamePanel extends JPanel
 
 	}
 	
-	
+	/**
+	 * sets the size of the game
+	 */
 	private void setPanelSize()
 	{
 		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
@@ -50,7 +63,9 @@ public class GamePanel extends JPanel
 	{
 		
 	}
-
+	/**
+	 * creates then paint for the game
+	 */
 	@Override
 	protected void paintComponent(Graphics graphics) 
 	{
@@ -58,7 +73,10 @@ public class GamePanel extends JPanel
 		
 		game.render(graphics);
 	}
-
+	/**
+	 * returns the game component
+	 * @return
+	 */
 	public Game getGame()
 	{
 		return game;

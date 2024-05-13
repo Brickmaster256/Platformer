@@ -11,7 +11,13 @@ import java.awt.image.BufferedImage;
 
 import plat.main.Game;
 import plat.utilz.LoadSave;
-public class Player extends Entity {
+
+/**
+ * this class process the player and its actions
+ */
+
+public class Player extends Entity 
+{
 	private BufferedImage[][] animations;
 	private int animationTick, animationIndex, animationSpeed = 25;
 	private int playerAction = IDLE;
@@ -30,7 +36,8 @@ public class Player extends Entity {
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
 
-	public Player(float x, float y, int width, int height) {
+	public Player(float x, float y, int width, int height) 
+	{
 		super(x, y, width, height);
 		loadAnimations();
 		
@@ -38,7 +45,8 @@ public class Player extends Entity {
 
 	}
 
-	public void update() {
+	public void update() 
+	{
 		updatePos();
 		updateAnimationTick();
 		setAnimation();
@@ -50,43 +58,64 @@ public class Player extends Entity {
 //		drawHitbox(g);
 	}
 
-	private void updateAnimationTick() {
+	private void updateAnimationTick()
+{
 		animationTick++;
-		if (animationTick >= animationSpeed) {
+		if (animationTick >= animationSpeed) 
+		{
 			animationTick = 0;
 			animationIndex++;
-			if (animationIndex >= getSpriteAmount(playerAction)) {
+			if (animationIndex >= getSpriteAmount(playerAction)) 
+			{
 				animationIndex = 0;
 				attacking = false;
 			}
 		}
 	}
-	private void setAnimation() {
+	private void setAnimation() 
+	{
 		int startAni = playerAction;
 		if (moving)
+		{
 			playerAction = RUNNING;
+		}	
 		else
+		{
 			playerAction = IDLE;
-
-		if (inAir) {
+		}
+		
+		if (inAir) 
+		{
 			if (airSpeed < 0)
+			{
 				playerAction = JUMP;
+			}	
 			else
-				playerAction = FALLING;
+			{
+				playerAction = FALLING;	
+			}	
 		}
 
 		if (attacking)
+		{
 			playerAction = ATTACK_ONE;
+		}
+			
 
 		if (startAni != playerAction)
+		{
 			resetanimationTick();
+		}
+			
 	}
-	private void resetanimationTick() {
+	private void resetanimationTick() 
+	{
 		animationTick = 0;
 		animationIndex = 0;
 	}
 
-	private void updatePos() {
+	private void updatePos() 
+	{
 		moving = false;
 		
 

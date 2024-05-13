@@ -5,13 +5,23 @@ import java.awt.image.BufferedImage;
 
 import plat.main.Game;
 import plat.utilz.LoadSave;
+/**
+ * manages the level
+ */
 
 public class LevelManager
 {
+	/**
+	 * creates data members that the get the level and visuals for the level
+	 */
 	private Game game;
 	private BufferedImage[] levelSprite;
 	private Level levelOne;
 	
+	/**
+	 * initializes the spects of the level
+	 * @param game
+	 */
 	public LevelManager(Game game)
 	{
 		this.game = game;
@@ -19,7 +29,9 @@ public class LevelManager
 		levelOne = new Level(LoadSave.GetLevelData());
 	}
 	
-	
+	/**
+	 * grabs thes sprites used for the levle
+	 */
 	private void importOutsideSprites()
 	{
 		levelSprite = new BufferedImage[48];
@@ -35,7 +47,10 @@ public class LevelManager
 	}
 	
 	
-
+	/**
+	 * draws the level
+	 * @param graphics
+	 */
 	public void draw(Graphics graphics)
 	{
 		for(int height = 0; height < Game.TILES_IN_HEIGHT; height++)
@@ -48,10 +63,17 @@ public class LevelManager
 		}
 		
 	}
+	/**
+	 * updates the level
+	 */
 	public void update()
 	{
 		
 	}
+	/**
+	 * returns the level data
+	 * @return
+	 */
 	public Level getCurrentLevel()
 	{
 		return levelOne;

@@ -4,7 +4,20 @@ import java.awt.geom.Rectangle2D;
 
 import plat.main.Game;
 
-public class HelpMethods {
+/**
+ * this class has different methods used to help process 
+ */
+public class HelpMethods 
+{
+	/**
+	 * checks if the the ground is solid or not
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param lvlData
+	 * @return
+	 */
 	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
 		if (!IsSolid(x, y, lvlData))
 			if (!IsSolid(x + width, y + height, lvlData))
@@ -13,6 +26,13 @@ public class HelpMethods {
 						return true;
 		return false;
 	}
+	/**
+	 * checks if a direction is solid
+	 * @param x
+	 * @param y
+	 * @param lvlData
+	 * @return
+	 */
 	private static boolean IsSolid(float x, float y, int[][] lvlData) 
 	{
 		if (x < 0 || x >= Game.GAME_WIDTH)
@@ -36,7 +56,12 @@ public class HelpMethods {
 		return false;
 	}
 
-
+	/**
+	 * check is there is an entity next to the wall
+	 * @param hitbox
+	 * @param xSpeed
+	 * @return
+	 */
 	public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed) 
 	{
 		int currentTile = (int) (hitbox.x / Game.TILES_SIZE);
@@ -53,7 +78,12 @@ public class HelpMethods {
 		}
 			
 	}
-
+	/**
+	 * checks if the floor ends or not
+	 * @param hitbox
+	 * @param airSpeed
+	 * @return
+	 */
 	public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float hitbox, float airSpeed) 
 	{
 		int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
@@ -71,6 +101,12 @@ public class HelpMethods {
 
 	}
 
+	/**
+	 * checks it the entity is on  the floor
+	 * @param hitbox
+	 * @param lvlData
+	 * @return
+	 */
 	public static boolean IsEntityOnFloor(Rectangle2D.Float hitbox, int[][] lvlData){
 		// Check the pixel below bottomleft and bottomright
 		if (!IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
